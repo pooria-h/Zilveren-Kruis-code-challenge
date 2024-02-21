@@ -1,21 +1,44 @@
 /* eslint-env node */
 require('@rushstack/eslint-patch/modern-module-resolution');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const stylistic = require('@stylistic/eslint-plugin');
+
+const codeStyle = stylistic.configs.customize({
+  'indent': 2,
+  'quotes': 'single',
+  'semi': true,
+  'comma-dangle': ['error', 'always-multiline'],
+});
 
 module.exports = {
-    root: true,
-    extends: [
-        'plugin:vue/vue3-essential',
-        'eslint:recommended',
-        '@vue/eslint-config-typescript',
-        '@vue/eslint-config-prettier'
-    ],
-    overrides: [
-        {
-            files: ['cypress/e2e/**.{cy,spec}.{js,ts,jsx,tsx}'],
-            extends: ['plugin:cypress/recommended']
-        }
-    ],
-    parserOptions: {
-        ecmaVersion: 'latest'
-    }
+  root: true,
+  env: {
+    node: true,
+  },
+  extends: [
+    'eslint:recommended',
+    'plugin:vue/base',
+    'plugin:vue/vue3-essential',
+    'plugin:import/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@stylistic/recommended-extends',
+  ],
+  overrides: [
+    {
+      files: ['cypress/e2e/**.{cy,spec}.{js,ts,jsx,tsx}'],
+      extends: ['plugin:cypress/recommended'],
+    },
+  ],
+  parser: 'vue-eslint-parser',
+  parserOptions: {
+    ecmaVersion: 'latest',
+    parser: '@typescript-eslint/parser',
+  },
+  plugins: [
+    '@stylistic',
+  ],
+  rules: {
+    ...codeStyle.rules,
+    'vue/multi-word-component-names': 'off',
+  },
 };
