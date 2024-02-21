@@ -2,23 +2,24 @@
   <div class="OnboardingForm">
     <form @submit.prevent="submit">
       <h1 class="mt-5">Aanmelden</h1>
-      <Stepper :steps="steps" />
+      <Stepper />
       <InitialData v-if="currentStep === 1" />
       <ChoosingPlans v-if="currentStep === 2" />
       <ControlForm v-if="currentStep === 3" />
-      <SubmitButton :step="currentStep" />
+      <BackAndForward />
     </form>
   </div>
 </template>
 
 <script lang="ts">
-import { ref, onBeforeMount, defineComponent } from 'vue';
-import { useRouter } from 'vue-router';
-import type { Step } from '@/types/Step';
+import { onBeforeMount, defineComponent } from 'vue';
+import { storeToRefs } from 'pinia';
+// eslint-disable-next-line import/no-unresolved
+import { useStepsStore } from '@/stores/StepsStore';
 import InitialData from './Steps/InitialData.vue';
 import ChoosingPlans from './Steps/ChoosingPlans.vue';
 import ControlForm from './Steps/ControlForm.vue';
-import SubmitButton from './SubmitButton.vue';
+import BackAndForward from './BackAndForward.vue';
 import Stepper from './Stepper.vue';
 
 export default defineComponent({
@@ -26,49 +27,30 @@ export default defineComponent({
     InitialData,
     ChoosingPlans,
     ControlForm,
-    SubmitButton,
+    BackAndForward,
     Stepper,
   },
   setup() {
-    const router = useRouter();
-    const steps: Step[] = [{
-      value: 1,
-      name: 'Uw gegevens',
-    }, {
-      value: 2,
-      name: 'Uw verzekering',
-    }, {
-      value: 3,
-      name: 'Controle',
-    }];
-    const currentStep = ref(steps[0].value);
+    const {
+      nextStep,
+      setStep,
+    } = useStepsStore();
+    const {
+      steps,
+      currentStep,
+    } = storeToRefs(useStepsStore());
 
     function submit() {
       if (currentStep.value === 3) {
         console.log('API call to submit the form');
         return;
       }
-      setStep(currentStep.value + 1);
-    }
-
-    function setStep(step: number) {
-      const minStep = 1;
-      const maxStep = 3;
-      if (step < minStep || step > maxStep) {
-        return;
-      }
-
-      currentStep.value = step;
-      pushStepToRouter(step);
-    }
-
-    function pushStepToRouter(step: number) {
-      router.push(`/step${step}`);
+      nextStep();
     }
 
     onBeforeMount(() => {
-      if (currentStep.value === 1) {
-        pushStepToRouter(1);
+      if (currentStep.value === 0) {
+        setStep(1);
       }
     });
 

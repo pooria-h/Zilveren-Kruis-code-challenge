@@ -3,6 +3,7 @@
 - Update ESLint config, Create Partial components and Layout
 - Create routes and Add steps to the form
 - Add types, Add Stepper component, Edit tsconfig.json
+- Add StepsStore, Add Step Back and Step forward buttons
 - ...
 
 # Zilveren Kruis code challenge
