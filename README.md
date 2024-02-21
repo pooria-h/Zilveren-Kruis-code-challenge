@@ -1,6 +1,7 @@
 ## Commits
 
 - Update ESLint config, Create Partial components and Layout
+- Create routes and Add steps to the form
 - ...
 
 # Zilveren Kruis code challenge

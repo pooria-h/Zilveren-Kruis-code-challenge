@@ -5,7 +5,7 @@
         <HeaderComponent />
       </template>
       <template #main>
-        <OnboardingForm />
+        <router-view />
       </template>
       <template #side>
         <SideBar />
@@ -19,10 +19,10 @@
 </template>
 
 <script setup lang="ts">
-import Layout from '../Layout.vue';
-import HeaderComponent from '../Partials/HeaderComponent.vue';
-import RatingBar from '../Partials/RatingBar.vue';
-import FooterComponent from '../Partials/FooterComponent.vue';
-import OnboardingForm from '../OnboardingForm.vue';
+import Layout from '../Layout/Layout.vue';
+import HeaderComponent from '../Layout/Partials/HeaderComponent.vue';
+import SideBar from '../Layout/Partials/SideBar.vue';
+import RatingBar from '../Layout/Partials/RatingBar.vue';
+import FooterComponent from '../Layout/Partials/FooterComponent.vue';
 
 </script>
