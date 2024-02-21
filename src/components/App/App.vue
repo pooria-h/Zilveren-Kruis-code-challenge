@@ -24,5 +24,4 @@ import HeaderComponent from '../Layout/Partials/HeaderComponent.vue';
 import SideBar from '../Layout/Partials/SideBar.vue';
 import RatingBar from '../Layout/Partials/RatingBar.vue';
 import FooterComponent from '../Layout/Partials/FooterComponent.vue';
-
 </script>

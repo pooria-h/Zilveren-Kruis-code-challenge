@@ -1,32 +1,47 @@
 <template>
   <div class="OnboardingForm">
     <form @submit.prevent="submit">
+      <h1 class="mt-5">Aanmelden</h1>
+      <Stepper :steps="steps" />
       <InitialData v-if="currentStep === 1" />
       <ChoosingPlans v-if="currentStep === 2" />
       <ControlForm v-if="currentStep === 3" />
-      <ControlStep :step="currentStep" />
+      <SubmitButton :step="currentStep" />
     </form>
   </div>
 </template>
 
 <script lang="ts">
-import { ref, onBeforeMount } from 'vue';
+import { ref, onBeforeMount, defineComponent } from 'vue';
 import { useRouter } from 'vue-router';
+import type { Step } from '@/types/Step';
 import InitialData from './Steps/InitialData.vue';
 import ChoosingPlans from './Steps/ChoosingPlans.vue';
 import ControlForm from './Steps/ControlForm.vue';
-import ControlStep from './ControlStep.vue';
+import SubmitButton from './SubmitButton.vue';
+import Stepper from './Stepper.vue';
 
-export default {
+export default defineComponent({
   components: {
     InitialData,
     ChoosingPlans,
     ControlForm,
-    ControlStep,
+    SubmitButton,
+    Stepper,
   },
   setup() {
     const router = useRouter();
-    const currentStep = ref(1);
+    const steps: Step[] = [{
+      value: 1,
+      name: 'Uw gegevens',
+    }, {
+      value: 2,
+      name: 'Uw verzekering',
+    }, {
+      value: 3,
+      name: 'Controle',
+    }];
+    const currentStep = ref(steps[0].value);
 
     function submit() {
       if (currentStep.value === 3) {
@@ -59,8 +74,9 @@ export default {
 
     return {
       currentStep,
+      steps,
       submit,
     };
   },
-};
+});
 </script>

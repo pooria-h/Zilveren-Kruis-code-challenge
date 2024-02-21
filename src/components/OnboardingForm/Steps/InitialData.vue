@@ -1,7 +1,6 @@
 <template>
   <div class="InitialData">
-    <h1>Aanmelden</h1>
-    <h2>Gegevens</h2>
+    <h2>Uw Gegevens</h2>
     <div class="form-group">
       <h3>Reden van aanmelding</h3>
       <div class="form-input my-4">
