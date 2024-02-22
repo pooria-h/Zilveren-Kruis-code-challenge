@@ -4,6 +4,7 @@
 - Create routes and Add steps to the form
 - Add types, Add Stepper component, Edit tsconfig.json
 - Add StepsStore, Add Step Back and Step forward buttons
+- Add FormStore, Add form components, Add FormOptions types, Add DatePicker
 - ...
 
 # Zilveren Kruis code challenge

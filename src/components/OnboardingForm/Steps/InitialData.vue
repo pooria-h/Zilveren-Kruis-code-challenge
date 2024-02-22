@@ -1,129 +1,157 @@
 <template>
   <div class="InitialData">
     <h2>Uw Gegevens</h2>
-    <div class="form-group">
-      <h3>Reden van aanmelding</h3>
-      <div class="form-input my-4">
+    <FormGroup :name="'Reden van aanmelding'">
+      <FormInput>
         <label id="aanmeldreden-label" class="input__title">
           Wat is de reden van uw aanvraag?
         </label>
         <div class="input__group">
-          <select class="form-control">
-            <option>
-              Nieuwe werkgever met collectiviteit bij
-              Zilveren Kruis
-            </option>
-            <option selected>
-              Overstappen per 1-1-2023 naar Zilveren
-              Kruis
+          <select v-model="requestType" class="form-control">
+            <option
+              v-for="option in requestTypeOptions"
+              :value="option.value"
+              :key="option.value">
+              {{ option.name }}
             </option>
           </select>
         </div>
-      </div>
-    </div>
+      </FormInput>
+    </FormGroup>
 
-    <div class="form-group">
-      <h3>Persoonlijke gegevens</h3>
-      <div class="form-input my-4">
+    <FormGroup :name="'Persoonlijke gegevens'">
+      <FormInput>
         <div class="input__group">
           <label class="input__title">Naam</label>
           <input
-          class="input__field form-control"
-          type="text"
+            v-model="firstName"
+            class="input__field form-control"
+            type="text"
           />
         </div>
-      </div>
-      <div class="form-input my-4">
+      </FormInput>
+      <FormInput>
         <div class="input__group">
           <label class="input__title">
             Tussenvoegsels
           </label>
           <input
-          class="input__field form-control"
-          type="text"
+            v-model="infix"
+            class="input__field form-control"
+            type="text"
           />
         </div>
-      </div>
-      <div class="form-input my-4">
+      </FormInput>
+      <FormInput>
         <div class="input__group">
           <label class="input__title">Achternaam</label>
           <input
-          class="input__field form-control"
-          type="text"
+            v-model="lastName"
+            class="input__field form-control"
+            type="text"
           />
         </div>
-      </div>
-      <div class="form-input my-4">
+      </FormInput>
+      <FormInput>
         <div class="input__group">
           <label class="input__title">Geslacht</label>
           <div class="form-row">
             <div
-            class="radio custom-radio radio__option"
-            >
-            <input
-            id="man"
-            class="radio__input custom-control-input"
-            type="radio"
-            name="geslacht"
-            />
-            <label
-            class="radio__label custom-control-label"
-            for="man"
-            >
-            Man
+              v-for="genderOption in genderOptions"
+              :key="genderOption.value"
+              class="radio custom-radio radio__option">
+              <input
+                v-model="gender"
+                :value="genderOption.value"
+                :id="genderOption.value"
+                class="radio__input custom-control-input"
+                type="radio"
+                name="geslacht"
+              />
+              <label
+                class="radio__label custom-control-label"
+                :for="genderOption.value">
+                {{ genderOption.name }}
+              </label>
+            </div>
+          </div>
+        </div>
+      </FormInput>
+      <FormInput :cssClasses="'flex-column'">
+        <div>
+          <label class="input__title">
+            Geboortedatum
           </label>
         </div>
+        <Datepicker
+          v-model="birthDate"
+          :model-type="'dd-MM-yyyy'"
+          :enable-time-picker="false"
+          no-today />
+      </FormInput>
+      <FormInput>
+        <div class="input__group">
+          <label class="input__title">
+            Burgerservicenummer
+          </label>
+          <input
+            v-model="bsn"
+            class="input__field form-control is-invalid"
+            type="number"
+          />
+        </div>
         <div
-        class="radio custom-radio radio__option"
-        >
-        <input
-        id="vrouw"
-        class="radio__input custom-control-input"
-        type="radio"
-        name="geslacht"
-        />
-        <label
-        class="radio__label custom-control-label"
-        for="vrouw"
-        >
-        Vrouw
-      </label>
-    </div>
-  </div>
-</div>
-</div>
-<div class="form-input my-4">
-  <div class="input__group">
-    <label class="input__title">
-      Geboortedatum
-    </label>
-    <input
-    class="input__field form-control"
-    type="text"
-    />
-  </div>
-</div>
-<div class="form-input my-4">
-  <div class="input__group">
-    <label class="input__title">
-      Burgerservicenummer
-    </label>
-    <input
-    class="input__field form-control is-invalid"
-    type="text"
-    />
-  </div>
-  <div
-  class="input__feedback invalid-feedback mt-1"
-  aria-live="polite"
-  >
-  <span
-  >Helaas is het ingevoerde
-  burgerservicenummer niet geldig. Probeer het
-  opnieuw.</span
-  >
-</div>
-</div>
-    </div>
+          class="input__feedback invalid-feedback mt-1"
+          aria-live="polite">
+          <span>
+            Helaas is het ingevoerde burgerservicenummer niet geldig. Probeer het opnieuw.
+          </span>
+        </div>
+      </FormInput>
+    </FormGroup>
   </div>
 </template>
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+import Datepicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css';
+import { storeToRefs } from 'pinia';
+// eslint-disable-next-line import/no-unresolved
+import { useFormStore } from '@/stores/FormStore';
+import FormGroup from '@/components/Layout/Partials/FormGroup.vue';
+import FormInput from '@/components/Layout/Partials/FormInput.vue';
+
+export default defineComponent({
+  components: {
+    FormGroup,
+    FormInput,
+    Datepicker,
+  },
+  setup() {
+    const {
+      requestType,
+      firstName,
+      infix,
+      lastName,
+      gender,
+      birthDate,
+      bsn,
+      genderOptions,
+      requestTypeOptions,
+    } = storeToRefs(useFormStore());
+
+    return {
+      requestType,
+      firstName,
+      infix,
+      lastName,
+      gender,
+      birthDate,
+      bsn,
+      genderOptions,
+      requestTypeOptions,
+    };
+  },
+});
+</script>

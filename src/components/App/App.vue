@@ -19,9 +19,9 @@
 </template>
 
 <script setup lang="ts">
-import Layout from '../Layout/Layout.vue';
-import HeaderComponent from '../Layout/Partials/HeaderComponent.vue';
-import SideBar from '../Layout/Partials/SideBar.vue';
-import RatingBar from '../Layout/Partials/RatingBar.vue';
-import FooterComponent from '../Layout/Partials/FooterComponent.vue';
+import Layout from '@/components/Layout/Layout.vue';
+import HeaderComponent from '@/components/Layout/Partials/HeaderComponent.vue';
+import SideBar from '@/components/Layout/Partials/SideBar.vue';
+import RatingBar from '@/components/Layout/Partials/RatingBar.vue';
+import FooterComponent from '@/components/Layout/Partials/FooterComponent.vue';
 </script>

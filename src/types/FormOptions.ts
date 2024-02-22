@@ -1,9 +1,34 @@
-export interface FormOptions {
-  requestType: Array<string>;
-  gender: Array<string>;
-  basicInsurancePlans: Array<string>;
-  paymentTerm: Array<string>;
-  decucible: Array<number>;
-  additionalInsurance: Array<string>;
-  dentalInsurance: Array<string>;
+export interface RequestType {
+  value: string;
+  name: string;
+}
+
+export interface Gender {
+  value: string;
+  name: string;
+}
+
+export interface BasicInsurancePlans {
+  value: string;
+  name: string;
+}
+
+export interface PaymentTerm {
+  value: string;
+  name: string;
+}
+
+export interface Decucible {
+  value: number;
+  name: string;
+}
+
+export interface AdditionalInsurance {
+  value: string;
+  name: string;
+}
+
+export interface DentalInsurance {
+  value: string;
+  name: string;
 }
