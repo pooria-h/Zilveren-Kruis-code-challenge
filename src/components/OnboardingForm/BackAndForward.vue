@@ -1,5 +1,5 @@
 <template>
-  <div class="BackAndForward mb-6 mt-4 d-flex justify-content-between">
+  <div class="BackAndForward mb-6 mt-6 d-flex justify-content-between">
     <div>
       <button
         @click="previousStep"

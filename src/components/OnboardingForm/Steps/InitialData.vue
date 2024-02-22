@@ -96,11 +96,14 @@
           </label>
           <input
             v-model="bsn"
-            class="input__field form-control is-invalid"
+            @blur="validateBSN(bsn)"
+            class="input__field form-control"
+            :class="{ 'is-invalid': !isBSNValid }"
             type="number"
           />
         </div>
         <div
+          v-if="!isBSNValid"
           class="input__feedback invalid-feedback mt-1"
           aria-live="polite">
           <span>
@@ -113,13 +116,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 import Datepicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 import { storeToRefs } from 'pinia';
 import { useFormStore } from '@/stores/FormStore';
 import FormGroup from '@/components/Layout/Partials/FormGroup.vue';
 import FormInput from '@/components/Layout/Partials/FormInput.vue';
+import { elfProefValidation } from '@/services/elfProefValidation';
+import { ElfproefType } from '@/types/ElfProefType';
 
 export default defineComponent({
   components: {
@@ -141,8 +146,16 @@ export default defineComponent({
       requestTypeOptions,
       genderOptions,
     } = useFormStore();
+    const isBSNValid = ref(true);
+
+    function validateBSN(input: number) {
+      isBSNValid.value = elfProefValidation(input.toString(), ElfproefType.bsn);
+      console.log(isBSNValid.value);
+    }
 
     return {
+      validateBSN,
+      isBSNValid,
       requestType,
       firstName,
       infix,

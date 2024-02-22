@@ -1,8 +1,10 @@
 import { defineStore } from 'pinia';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import type * as Interfaces from '@/types/FormOptions';
+import type { FormError } from '@/types/FormError';
 
 export const useFormStore = defineStore('FormStore', () => {
+  const Errors = ref([] as FormError[]);
   const requestTypeOptions = [{
     value: 'new',
     name: 'Nieuwe werkgever met collectiviteit bij Zilveren Kruis',
@@ -52,15 +54,15 @@ export const useFormStore = defineStore('FormStore', () => {
     name: 'Per jaar',
   },
   ] as Interfaces.PaymentTerm[];
-  const decucible = ref(358 as number | null);
-  const decucibleOptions = [{
+  const deductible = ref(null as number | null);
+  const deductibleOptions = [{
     value: 358,
     name: '€ 358,00',
   }, {
     value: 885,
     name: '€ 885,00',
   },
-  ] as Interfaces.Decucible[];
+  ] as Interfaces.Deductible[];
   const additionalInsurance = ref('additional1' as string);
   const additionalInsuranceOptions = [{
     value: 'additional1',
@@ -85,8 +87,29 @@ export const useFormStore = defineStore('FormStore', () => {
     name: 'Tand 3',
   },
   ] as Interfaces.DentalInsurance[];
+  const isDeductibleVisible = computed(() => basicInsurancePlans.value === 'Budget');
+
+  // TODO: Will be refactored
+  function validateForm() {
+    if (Errors.value.length > 0) {
+      throw new Error('Form is not valid');
+    }
+  }
+
+  function setDeductibleBasedOnChoosenPlan(plan: string) {
+    if (plan !== 'Budget') {
+      deductible.value = null;
+    }
+    else {
+      deductible.value = 358;
+    }
+  }
 
   return {
+    validateForm,
+    setDeductibleBasedOnChoosenPlan,
+    isDeductibleVisible,
+    Errors,
     requestType,
     firstName,
     infix,
@@ -96,14 +119,14 @@ export const useFormStore = defineStore('FormStore', () => {
     bsn,
     basicInsurancePlans,
     paymentTerm,
-    decucible,
+    deductible,
     additionalInsurance,
     dentalInsurance,
     requestTypeOptions,
     basicInsurancePlansOptions,
     genderOptions,
     paymentTermOptions,
-    decucibleOptions,
+    deductibleOptions,
     additionalInsuranceOptions,
     dentalInsuranceOptions,
   };

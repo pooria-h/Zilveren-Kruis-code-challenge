@@ -6,6 +6,7 @@
 - Add StepsStore, Add Step Back and Step forward buttons
 - Add FormStore, Add form components, Add FormOptions types, Add DatePicker
 - Complete form value bindings, Refactor
+- Add Validations
 
 # Zilveren Kruis code challenge
 

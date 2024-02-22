@@ -19,7 +19,7 @@ export interface PaymentTerm {
   name: string;
 }
 
-export interface Decucible {
+export interface Deductible {
   value: number;
   name: string;
 }

@@ -15,6 +15,7 @@
 import { onBeforeMount, defineComponent } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useStepsStore } from '@/stores/StepsStore';
+import { useFormStore } from '@/stores/FormStore';
 import InitialData from './Steps/InitialData.vue';
 import ChoosingPlans from './Steps/ChoosingPlans.vue';
 import ControlForm from './Steps/ControlForm.vue';
@@ -38,9 +39,11 @@ export default defineComponent({
       steps,
       currentStep,
     } = storeToRefs(useStepsStore());
+    const { validateForm } = useFormStore();
 
     function submit() {
       if (currentStep.value === 3) {
+        validateForm();
         console.log('API call to submit the form');
         return;
       }

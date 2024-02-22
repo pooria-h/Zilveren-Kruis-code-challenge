@@ -74,9 +74,12 @@
           <label class="input__title">
               Kies de hoogste van het eigen risico
           </label>
-          <select v-model="decucible" class="form-control">
+          <select
+            v-model="deductible"
+            :disabled="!isDeductibleVisible"
+            class="form-control form-select">
             <option
-              v-for="option in decucibleOptions"
+              v-for="option in deductibleOptions"
               :key="option.value"
               :value="option.value"
             >
@@ -132,7 +135,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, watch } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useFormStore } from '@/stores/FormStore';
 import FormGroup from '@/components/Layout/Partials/FormGroup.vue';
@@ -147,25 +150,32 @@ export default defineComponent({
     const {
       basicInsurancePlans,
       paymentTerm,
-      decucible,
+      deductible,
       additionalInsurance,
       dentalInsurance,
+      isDeductibleVisible,
     } = storeToRefs(useFormStore());
     const {
+      setDeductibleBasedOnChoosenPlan,
       basicInsurancePlansOptions,
       paymentTermOptions,
-      decucibleOptions,
+      deductibleOptions,
       additionalInsuranceOptions,
       dentalInsuranceOptions,
     } = useFormStore();
 
+    watch(basicInsurancePlans, (newVal) => {
+      setDeductibleBasedOnChoosenPlan(newVal);
+    });
+
     return {
+      isDeductibleVisible,
       basicInsurancePlansOptions,
       basicInsurancePlans,
       paymentTerm,
       paymentTermOptions,
-      decucible,
-      decucibleOptions,
+      deductible,
+      deductibleOptions,
       additionalInsurance,
       additionalInsuranceOptions,
       dentalInsurance,

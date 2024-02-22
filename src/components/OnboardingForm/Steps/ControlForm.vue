@@ -49,7 +49,7 @@
 
     <div class="mt-4">
       <h3>Kies de hoogste van het eigen risico</h3>
-      <p class="mb-6">{{ generateVisualInput(decucible) }}</p>
+      <p class="mb-6">{{ generateVisualInput(deductible) }}</p>
     </div>
 
     <div class="mt-4">
@@ -80,7 +80,7 @@ export default defineComponent({
       bsn,
       basicInsurancePlans,
       paymentTerm,
-      decucible,
+      deductible,
       additionalInsurance,
       dentalInsurance,
     } = useFormStore();
@@ -111,7 +111,7 @@ export default defineComponent({
       bsn,
       basicInsurancePlans,
       paymentTerm,
-      decucible,
+      deductible,
       additionalInsurance,
       dentalInsurance,
       generateVisualInput,
