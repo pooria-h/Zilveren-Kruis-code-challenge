@@ -14,7 +14,6 @@
 <script lang="ts">
 import { onBeforeMount, defineComponent } from 'vue';
 import { storeToRefs } from 'pinia';
-// eslint-disable-next-line import/no-unresolved
 import { useStepsStore } from '@/stores/StepsStore';
 import InitialData from './Steps/InitialData.vue';
 import ChoosingPlans from './Steps/ChoosingPlans.vue';

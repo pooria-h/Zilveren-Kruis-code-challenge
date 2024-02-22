@@ -11,6 +11,7 @@ export interface Gender {
 export interface BasicInsurancePlans {
   value: string;
   name: string;
+  price: string;
 }
 
 export interface PaymentTerm {

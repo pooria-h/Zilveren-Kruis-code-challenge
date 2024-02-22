@@ -44,7 +44,6 @@
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
 import { storeToRefs } from 'pinia';
-// eslint-disable-next-line import/no-unresolved
 import { useStepsStore } from '@/stores/StepsStore';
 
 export default defineComponent({

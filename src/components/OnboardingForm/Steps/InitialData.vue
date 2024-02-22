@@ -117,7 +117,6 @@ import { defineComponent } from 'vue';
 import Datepicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 import { storeToRefs } from 'pinia';
-// eslint-disable-next-line import/no-unresolved
 import { useFormStore } from '@/stores/FormStore';
 import FormGroup from '@/components/Layout/Partials/FormGroup.vue';
 import FormInput from '@/components/Layout/Partials/FormInput.vue';
@@ -137,9 +136,11 @@ export default defineComponent({
       gender,
       birthDate,
       bsn,
-      genderOptions,
-      requestTypeOptions,
     } = storeToRefs(useFormStore());
+    const {
+      requestTypeOptions,
+      genderOptions,
+    } = useFormStore();
 
     return {
       requestType,

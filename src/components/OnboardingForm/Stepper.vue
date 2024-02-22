@@ -28,7 +28,6 @@
 
 <script lang="ts">
 import { storeToRefs } from 'pinia';
-// eslint-disable-next-line import/no-unresolved
 import { useStepsStore } from '@/stores/StepsStore';
 import { defineComponent } from 'vue';
 

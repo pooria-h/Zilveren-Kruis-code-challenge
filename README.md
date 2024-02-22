@@ -5,7 +5,7 @@
 - Add types, Add Stepper component, Edit tsconfig.json
 - Add StepsStore, Add Step Back and Step forward buttons
 - Add FormStore, Add form components, Add FormOptions types, Add DatePicker
-- ...
+- Complete form value bindings, Refactor
 
 # Zilveren Kruis code challenge
 
