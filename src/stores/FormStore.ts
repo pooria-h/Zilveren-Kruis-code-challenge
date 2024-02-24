@@ -13,7 +13,7 @@ export const useFormStore = defineStore('FormStore', () => {
     name: 'Overstappen per 1-1-2023 naar Zilveren Kruis',
   },
   ] as Interfaces.RequestType[];
-  const requestType = ref('' as string);
+  const requestType = ref('new' as string);
   const firstName = ref('' as string);
   const infix = ref('' as string);
   const lastName = ref('' as string);

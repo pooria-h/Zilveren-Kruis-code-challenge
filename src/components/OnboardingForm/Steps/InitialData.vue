@@ -25,6 +25,7 @@
           <label class="input__title">Naam</label>
           <input
             v-model="firstName"
+            placeholder="John"
             class="input__field form-control"
             type="text"
           />
@@ -37,6 +38,7 @@
           </label>
           <input
             v-model="infix"
+            placeholder="van"
             class="input__field form-control"
             type="text"
           />
@@ -47,6 +49,7 @@
           <label class="input__title">Achternaam</label>
           <input
             v-model="lastName"
+            placeholder="Doe"
             class="input__field form-control"
             type="text"
           />
@@ -97,6 +100,7 @@
           <input
             v-model="bsn"
             @blur="validateBSN(bsn)"
+            placeholder="123456789"
             class="input__field form-control"
             :class="{ 'is-invalid': !isBSNValid }"
             type="number"

@@ -9,6 +9,7 @@
 - Add Validations
 - Add vee-validate as dependency, Refactor
 - Fix router bug
+- Add placeholders
 - ...
 
 
