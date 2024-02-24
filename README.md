@@ -10,6 +10,7 @@
 - Add vee-validate as dependency, Refactor
 - Fix router bug
 - Add placeholders
+- Supress error in tsconfig.app.json and tsconfig.config.json
 - ...
 
 

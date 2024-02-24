@@ -66,14 +66,14 @@
               <input
                 v-model="gender"
                 :value="genderOption.value"
-                :id="genderOption.value"
+                :id="genderOption.value.toString()"
                 class="radio__input custom-control-input"
                 type="radio"
                 name="geslacht"
               />
               <label
                 class="radio__label custom-control-label"
-                :for="genderOption.value">
+                :for="genderOption.value.toString()">
                 {{ genderOption.name }}
               </label>
             </div>
