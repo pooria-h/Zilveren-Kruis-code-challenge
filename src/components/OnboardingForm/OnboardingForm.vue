@@ -12,9 +12,8 @@
 </template>
 
 <script lang="ts">
-import { onBeforeMount, defineComponent } from 'vue';
+import { defineComponent } from 'vue';
 import { storeToRefs } from 'pinia';
-// import { useForm } from 'vee-validate';
 import { useStepsStore } from '@/stores/StepsStore';
 import { useFormStore } from '@/stores/FormStore';
 import InitialData from './Steps/InitialData.vue';
@@ -34,14 +33,12 @@ export default defineComponent({
   setup() {
     const {
       nextStep,
-      setStep,
       steps,
     } = useStepsStore();
     const {
       currentStep,
     } = storeToRefs(useStepsStore());
     const { validateForm } = useFormStore();
-    // const { values } = useForm();
 
     function submit() {
       if (currentStep.value === 3) {
@@ -51,12 +48,6 @@ export default defineComponent({
       }
       nextStep();
     }
-
-    onBeforeMount(() => {
-      if (currentStep.value === 0) {
-        setStep(1);
-      }
-    });
 
     return {
       currentStep,

@@ -8,6 +8,8 @@
 - Complete form value bindings, Refactor
 - Add Validations
 - Add vee-validate as dependency, Refactor
+- Fix router bug
+- ...
 
 
 # Zilveren Kruis code challenge

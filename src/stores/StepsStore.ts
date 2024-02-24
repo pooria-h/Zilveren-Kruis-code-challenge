@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { ref } from 'vue';
+import { computed } from 'vue';
 import { useRouter } from 'vue-router';
 import type { Step } from '@/types/Step';
 
@@ -15,27 +15,26 @@ export const useStepsStore = defineStore('StepsStore', () => {
     value: 3,
     name: 'Controle',
   }] as Step[];
-  const currentStep = ref(0);
+  const currentStep = computed(() => {
+    if (router.currentRoute.value.name === 'OnboardingForm') {
+      return Number(router.currentRoute.value.params.step);
+    }
+    return 1;
+  });
 
   function setStep(step: number) {
-    const minStep = 1;
-    const maxStep = 3;
-    if (step < minStep || step > maxStep || step === currentStep.value) {
-      return;
-    }
-    currentStep.value = step;
     pushStepToRouter(step);
   }
 
   function nextStep() {
-    setStep(currentStep.value + 1);
+    pushStepToRouter(currentStep.value + 1);
   }
   function previousStep() {
-    setStep(currentStep.value - 1);
+    pushStepToRouter(currentStep.value - 1);
   }
 
   function pushStepToRouter(step: number) {
-    router.push(`/step${step}`);
+    router.push(`/step/${step}`);
   }
 
   return {

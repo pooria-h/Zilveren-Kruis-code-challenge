@@ -33,8 +33,8 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   setup() {
-    const { setStep } = useStepsStore();
-    const { steps, currentStep } = storeToRefs(useStepsStore());
+    const { setStep, steps } = useStepsStore();
+    const { currentStep } = storeToRefs(useStepsStore());
 
     return {
       steps,

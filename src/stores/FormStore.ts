@@ -89,20 +89,12 @@ export const useFormStore = defineStore('FormStore', () => {
   ] as Interfaces.DentalInsurance[];
   const isDeductibleVisible = computed(() => basicInsurancePlans.value === 'Budget');
 
-  // TODO: Will be refactored
+  // TODO: Will be refactored and Vee-Validate will be used
   function validateForm() {
     if (Errors.value.length > 0) {
       throw new Error('Form is not valid');
     }
   }
-
-  // function pushToErrors(error: FormError) {
-  //   Errors.value.push(error);
-  // }
-
-  // function removeError(error: FormError) {
-  //   Errors.value = Errors.value.filter((e) => e !== error);
-  // }
 
   function setDeductibleBasedOnChoosenPlan(plan: string) {
     if (plan !== 'Budget') {
