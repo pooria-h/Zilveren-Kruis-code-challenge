@@ -7,6 +7,8 @@
 - Add FormStore, Add form components, Add FormOptions types, Add DatePicker
 - Complete form value bindings, Refactor
 - Add Validations
+- Add vee-validate as dependency, Refactor
+
 
 # Zilveren Kruis code challenge
 

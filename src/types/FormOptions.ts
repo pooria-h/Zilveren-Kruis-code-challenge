@@ -1,35 +1,15 @@
-export interface RequestType {
-  value: string;
+export interface BaseOption {
+  value: string | number;
   name: string;
 }
 
-export interface Gender {
-  value: string;
-  name: string;
-}
+export type RequestType = BaseOption;
+export type Gender = BaseOption;
+export type PaymentTerm = BaseOption;
+export type Deductible = BaseOption;
+export type AdditionalInsurance = BaseOption;
+export type DentalInsurance = BaseOption;
 
-export interface BasicInsurancePlans {
-  value: string;
-  name: string;
+export interface BasicInsurancePlans extends BaseOption {
   price: string;
-}
-
-export interface PaymentTerm {
-  value: string;
-  name: string;
-}
-
-export interface Deductible {
-  value: number;
-  name: string;
-}
-
-export interface AdditionalInsurance {
-  value: string;
-  name: string;
-}
-
-export interface DentalInsurance {
-  value: string;
-  name: string;
 }

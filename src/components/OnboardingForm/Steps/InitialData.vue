@@ -150,7 +150,6 @@ export default defineComponent({
 
     function validateBSN(input: number) {
       isBSNValid.value = elfProefValidation(input.toString(), ElfproefType.bsn);
-      console.log(isBSNValid.value);
     }
 
     return {

@@ -4,11 +4,15 @@
   </div>
 </template>
 
-<script setup lang="ts">
-defineProps({
-  cssClasses: {
-    type: String,
-    default: '',
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+  props: {
+    cssClasses: {
+      type: String,
+      default: '',
+    },
   },
 });
 </script>

@@ -4,62 +4,76 @@
 
     <div class="mt-4">
       <h4>Wat is de reden van uw aanvraag?</h4>
-      <p class="mb-6">{{ generateVisualInput(requestType) }}</p>
+      <p class="mb-6">
+        {{ findElemByValueProp(requestTypeOptions, requestType)?.name || EMPTY_INPUT }}
+      </p>
     </div>
 
     <div class="mt-4">
       <h4>Naam</h4>
-      <p class="mb-6">{{ generateVisualInput(firstName) }}</p>
+      <p class="mb-6">{{ firstName || EMPTY_INPUT }}</p>
     </div>
 
     <div class="mt-4">
       <h3>Tussenvoegsels</h3>
-      <p class="mb-6">{{ generateVisualInput(infix) }}</p>
+      <p class="mb-6">{{ infix || EMPTY_INPUT }}</p>
     </div>
 
     <div class="mt-4">
       <h3>Achternaam</h3>
-      <p class="mb-6">{{ generateVisualInput(lastName) }}</p>
+      <p class="mb-6">{{ lastName || EMPTY_INPUT }}</p>
     </div>
 
     <div class="mt-4">
       <h3>Geslacht</h3>
-      <p class="mb-6">{{ generateVisualInput(gender) }}</p>
+      <p class="mb-6">
+        {{ findElemByValueProp(genderOptions, gender)?.name || EMPTY_INPUT }}
+      </p>
     </div>
 
     <div class="mt-4">
       <h3>Geboortedatum</h3>
-      <p class="mb-6">{{ generateVisualInput(birthDate) }}</p>
+      <p class="mb-6">{{ birthDate || EMPTY_INPUT }}</p>
     </div>
 
     <div class="mt-4">
       <h3>Burgerservicenummer</h3>
-      <p class="mb-6">{{ generateVisualInput(bsn) }}</p>
+      <p class="mb-6">{{ bsn || EMPTY_INPUT }}</p>
     </div>
 
     <div class="mt-4">
       <h3>Basisverzekering</h3>
-      <p class="mb-6">{{ generateVisualInput(basicInsurancePlans) }}</p>
+      <p class="mb-6">
+        {{ findElemByValueProp(basicInsurancePlansOptions, basicInsurancePlans)?.name || EMPTY_INPUT }}
+      </p>
     </div>
 
     <div class="mt-4">
       <h3>Kies je betaaltermijn</h3>
-      <p class="mb-6">{{ generateVisualInput(paymentTerm) }}</p>
+      <p class="mb-6">
+        {{ findElemByValueProp(paymentTermOptions, paymentTerm)?.name || EMPTY_INPUT }}
+      </p>
     </div>
 
     <div class="mt-4">
       <h3>Kies de hoogste van het eigen risico</h3>
-      <p class="mb-6">{{ generateVisualInput(deductible) }}</p>
+      <p class="mb-6">
+        {{ findElemByValueProp(deductibleOptions, deductible)?.name || EMPTY_INPUT }}
+      </p>
     </div>
 
     <div class="mt-4">
       <h3>Kies uw aanvullende verzekering</h3>
-      <p class="mb-6">{{ generateVisualInput(additionalInsurance) }}</p>
+      <p class="mb-6">
+        {{ findElemByValueProp(additionalInsuranceOptions, additionalInsurance)?.name || EMPTY_INPUT }}
+      </p>
     </div>
 
     <div class="mt-4">
       <h3>Kies uw tandartsverzekering</h3>
-      <p class="mb-6">{{ generateVisualInput(dentalInsurance) }}</p>
+      <p class="mb-6">
+        {{ findElemByValueProp(dentalInsuranceOptions, dentalInsurance)?.name || EMPTY_INPUT }}
+      </p>
     </div>
   </div>
 </template>
@@ -67,54 +81,56 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { useFormStore } from '@/stores/FormStore';
+import findElemByValueProp from '@/services/findElemByValueProp';
+
+const EMPTY_INPUT = '---';
 
 export default defineComponent({
   setup() {
     const {
       requestType,
+      requestTypeOptions,
       firstName,
       infix,
       lastName,
       gender,
+      genderOptions,
       birthDate,
       bsn,
       basicInsurancePlans,
+      basicInsurancePlansOptions,
       paymentTerm,
+      paymentTermOptions,
       deductible,
+      deductibleOptions,
       additionalInsurance,
+      additionalInsuranceOptions,
       dentalInsurance,
+      dentalInsuranceOptions,
     } = useFormStore();
-
-    function generateVisualInput(input: string | number | Date | null) {
-      if (input === null) {
-        return '-----';
-      }
-      if (typeof input === 'string' && input.length === 0) {
-        return '-----';
-      }
-      if (typeof input === 'number' && input === 0) {
-        return '-----';
-      }
-      if (input instanceof Date) {
-        return input.toLocaleDateString();
-      }
-      return input;
-    }
 
     return {
       requestType,
+      requestTypeOptions,
       firstName,
       infix,
       lastName,
       gender,
+      genderOptions,
       birthDate,
       bsn,
       basicInsurancePlans,
+      basicInsurancePlansOptions,
       paymentTerm,
+      paymentTermOptions,
       deductible,
+      deductibleOptions,
       additionalInsurance,
+      additionalInsuranceOptions,
       dentalInsurance,
-      generateVisualInput,
+      dentalInsuranceOptions,
+      findElemByValueProp,
+      EMPTY_INPUT,
     };
   },
 });

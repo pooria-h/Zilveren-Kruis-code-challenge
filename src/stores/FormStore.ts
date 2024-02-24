@@ -96,6 +96,14 @@ export const useFormStore = defineStore('FormStore', () => {
     }
   }
 
+  // function pushToErrors(error: FormError) {
+  //   Errors.value.push(error);
+  // }
+
+  // function removeError(error: FormError) {
+  //   Errors.value = Errors.value.filter((e) => e !== error);
+  // }
+
   function setDeductibleBasedOnChoosenPlan(plan: string) {
     if (plan !== 'Budget') {
       deductible.value = null;

@@ -5,7 +5,7 @@ import type { Step } from '@/types/Step';
 
 export const useStepsStore = defineStore('StepsStore', () => {
   const router = useRouter();
-  const steps = ref([{
+  const steps = [{
     value: 1,
     name: 'Uw gegevens',
   }, {
@@ -14,7 +14,7 @@ export const useStepsStore = defineStore('StepsStore', () => {
   }, {
     value: 3,
     name: 'Controle',
-  }] as Step[]);
+  }] as Step[];
   const currentStep = ref(0);
 
   function setStep(step: number) {
